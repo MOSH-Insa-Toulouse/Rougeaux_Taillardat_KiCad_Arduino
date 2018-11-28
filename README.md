@@ -53,7 +53,7 @@ function Decoder(bytes) {
 ```
 ### Node-red
 
-![](./assets/red-node.png =250x)
+![](./assets/red-node.png)
 
 ### Freeboard.io
 
