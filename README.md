@@ -10,7 +10,7 @@ A **LoRa-connected gas sensor** has been developed to alert the user about the c
 This folder contains :
 - **PCB Files**: A shield for the gas sensor to plug on an Arduino Uno (made with [KiCad](http://kicad-pcb.org/))
 - **Arduino Code**: The code for the microcontroler, using [Arduino IDE](https://www.arduino.cc/en/Main/Software)
-- **Dashboard Link**: The HMI, to stay connected with your sensor ([NodeRed](https://nodered.org/) and [Freeboard.io](https://freeboard.io/))
+- **Dashboard Link**: The HMI, to stay connected with your sensor ([Node-RED](https://nodered.org/) and [Freeboard.io](https://freeboard.io/))
 
 
 ## PCB Files
@@ -51,9 +51,22 @@ function Decoder(bytes) {
   };
 }
 ```
-### Node-red
+And the result for a test payload: ``` 02 BE 01 F5 ```
+```json
+{
+  "gaz": 7.02,
+  "nano": 5.01
+}
+```
 
+### Node-RED
+Once the payload is well interpreted in TTN, we use the tool **Node-RED** built on Node.js, to deal with our datas and then display them in a dashboard for user consultation.
 ![](./assets/red-node.png)
 
-### Freeboard.io
+We use a ``` ttn ``` node linked to our application and registered device. When a data is received, we can observe in the debug console the following result (output of the debug node):
+![](./assets/debug-node-red.png)
 
+Therefore we received the json payload as expected. Instead of using the dashboard provided by Node-RED directly, we prefered to use Freeboard.io, to access the interface anywhere, and not only on our laptop localhost.
+That's the aim of the dweet node, which transfer the payload to a specific topic, that we will use in our freeboard dashboard.
+
+### Freeboard.io
