@@ -61,9 +61,11 @@ And the result for a test payload: ``` 02 BE 01 F5 ```
 
 ### Node-RED
 Once the payload is well interpreted in TTN, we use the tool **Node-RED** built on Node.js, to deal with our datas and then display them in a dashboard for user consultation.
+
 ![](./assets/red-node.png)
 
 We use a ``` ttn ``` node linked to our application and registered device. When a data is received, we can observe in the debug console the following result (output of the debug node):
+
 ![](./assets/debug-node-red.png)
 
 Therefore we received the json payload as expected. Instead of using the dashboard provided by Node-RED directly, we prefered to use Freeboard.io, to access the interface anywhere, and not only on our laptop localhost.
