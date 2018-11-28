@@ -37,7 +37,7 @@ These parameters have been respected to respect the INSA PCB production capacity
 > KiCad-Pcbnew-Affichage-3D Visualizer
 
 ## Node-Red Dashboard & Freeboard.io
-### TTN data receiving
+### TTN data payload
 Data sent by the Arduino board through LoRA network are decoded thanks to a ```Decoder``` function that we precised in the *Payload Format* section, which allows to generate an understable payload with the bytes received, as ```json``` format for example.
 Our ```Decoder``` is presented below:
 ```javascript
@@ -72,3 +72,7 @@ Therefore we received the json payload as expected. Instead of using the dashboa
 That's the aim of the dweet node, which transfer the payload to a specific topic, that we will use in our freeboard dashboard.
 
 ### Freeboard.io
+Dashboard User Interface:
+
+![](./assets/freeboard.png)
+
