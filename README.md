@@ -41,20 +41,29 @@ These parameters have been respected to respect the INSA PCB production capacity
 Data sent by the Arduino board through LoRA network are decoded thanks to a ```Decoder``` function that we precised in the *Payload Format* section, which allows to generate an understable payload with the bytes received, as ```json``` format for example.
 Our ```Decoder``` is presented below:
 ```javascript
-function Decoder(bytes) {
+function Decoder(bytes, port) {
   // Decode an uplink message from a buffer
-  var gaz = (bytes[0] << 8) | bytes[1];
-  var nano = (bytes[2] << 8) | bytes[3];
-  return {
-    gaz: gaz / 100.0, //TODO: adapt data transformation
-    nano: nano / 100.0
-  };
+  if (port == 2) {
+    return { waiting: true };
+  } else {
+    var gas = (bytes[0] << 8) | bytes[1];   // value between 0 and 1024
+    var nano = (bytes[2] << 8) | bytes[3];
+    
+    // transform into readable data
+    var gas_volt = gas / 1024 * 5.0;
+    var gas_ratio = (5.0 - gas_volt)/gas_volt;
+    var R0 = 9.3; // sensor resistance at 1000ppm LPG in the clean air
+    return {
+      gas: (gas_ratio/R0).toFixed(2),
+      nano: nano
+    };
+  }
 }
 ```
 And the result for a test payload: ``` 02 BE 01 F5 ```
 ```json
 {
-  "gaz": 7.02,
+  "gas": 7.02,
   "nano": 5.01
 }
 ```
