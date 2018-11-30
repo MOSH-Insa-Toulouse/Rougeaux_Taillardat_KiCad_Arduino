@@ -9,7 +9,7 @@ A **LoRa-connected gas sensor** has been developed to alert the user about the c
 
 # Content
 
-This folder contains :
+This repository contains :
 - **KiCad PCB Files**: A shield for the gas sensor to plug on an Arduino Uno (made with [KiCad](http://kicad-pcb.org/))
 - **Arduino Code**: The code for the microcontroler (using [Arduino IDE](https://www.arduino.cc/en/Main/Software))
 - **Node-RED Dashboard**: The HMI, to stay connected with your sensor ([Node-RED](https://nodered.org/) and [Freeboard.io](https://freeboard.io/))
