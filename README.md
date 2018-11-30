@@ -126,6 +126,5 @@ https://freeboard.io/board/Wauqxs**
 
 
 ## Contact
-Elie Taillardat: taillard@etud.insa-toulouse.fr
-
-Sophie Rougeaux: rougeaux@etud.insa-toulouse.fr
+- Elie Taillardat: taillard@etud.insa-toulouse.fr
+- Sophie Rougeaux: rougeaux@etud.insa-toulouse.fr
