@@ -34,6 +34,9 @@ These parameters have been respected to respect the INSA PCB production capacity
 |Perçage Via|0.8|
 
 ### 3D Model
+
+![](./assets/3D.png)
+
 > KiCad-Pcbnew-Affichage-3D Visualizer
 
 ## Node-Red Dashboard & Freeboard.io
