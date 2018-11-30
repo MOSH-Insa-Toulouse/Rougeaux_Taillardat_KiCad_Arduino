@@ -64,6 +64,8 @@ Once the payload is well interpreted in TTN, we use the tool **Node-RED** built 
 
 ![](./assets/node-red.png)
 
+testtststs
+
 We use a ``` ttn ``` node linked to our application and registered device. When a data is received, we can observe in the debug console the following result (output of the debug node):
 
 ![](./assets/debug-node-red.png)
