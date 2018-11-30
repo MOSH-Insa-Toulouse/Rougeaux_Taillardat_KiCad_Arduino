@@ -13,7 +13,7 @@ This repository contains :
 - **KiCad PCB Files**: A shield for the gas sensor to plug on an Arduino Uno (made with [KiCad](http://kicad-pcb.org/))
 - **Arduino Code**: The code for the microcontroler (using [Arduino IDE](https://www.arduino.cc/en/Main/Software))
 
-A **Node-RED Dashboard** has been done to stay connected with your sensor. The development of this HMI is described at the end of this file.([Node-RED](https://nodered.org/) and [Freeboard.io](https://freeboard.io/))
+A **Node-RED Dashboard** has been done to stay connected with your sensor. The development of this HMI is described at the end of this Readme. ([Node-RED](https://nodered.org/) and [Freeboard.io](https://freeboard.io/))
 
 
 ## KiCad PCB Files
