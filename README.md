@@ -66,7 +66,7 @@ function Decoder(bytes, port) {
 ```
 > We code the ```nano``` variable in prevision of the future nano-particules sensor that we will design at AIME). For now it is useless.
 
-And the result for a test payload on port 1: ``` 02 BE 01 F5 ```
+And the result for a simulated uplink payload on port 1: ``` 02 BE 01 F5 ```
 ```json
 {
   "gas": 7.02,
@@ -120,8 +120,8 @@ https://freeboard.io/board/Wauqxs
 
 ![](./assets/freeboard.gif)
 
-### THE END
 
 ## Contact
 taillard@etud.insa-toulouse.fr
+
 rougeaux@etud.insa-toulouse.fr
