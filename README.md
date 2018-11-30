@@ -77,12 +77,12 @@ Once the payload is well interpreted in TTN, we use the tool **Node-RED** built 
 
 ![](./assets/node-red.png)
 
-We use a ``` ttn uplink ``` node linked to our application and registered device. When a data is received, we can observe in the debug console the json payload received (output of the debug node, cf. picture above in the right panel). Therefore we received the json payload as expected.
+We use a ``` ttn uplink ``` node linked to our application and registered device. When a data is received, we can observe in the **debug** console the json payload received (output of the debug node, cf. picture above in the right panel). Therefore we received the json payload as expected.
 The dashboard compiled is shown below:
 
 ![](./assets/dashboard.gif)
 
-As we can see, we add a switch to control the state of the gas sensor remotely.
+As we can see, **we add a switch to control the state of the gas sensor remotely**.
 When switched off for example, the payload sent in the ```ttn downlink``` node looks like:
 ```json
 {
