@@ -64,7 +64,8 @@ function Decoder(bytes, port) {
   }
 }
 ```
-> We code the ```nano``` variable in prevision of the future nano-particules sensor that we will design at AIME). FOr now it is useless.
+> We code the ```nano``` variable in prevision of the future nano-particules sensor that we will design at AIME). For now it is useless.
+
 And the result for a test payload on port 1: ``` 02 BE 01 F5 ```
 ```json
 {
@@ -115,8 +116,12 @@ In addition to the localhost Node-RED dashboard we created, we prefered to use a
 That's the aim of the dweet node, which transfers the payload to a specific **topic**, that we will use in our freeboard dashboard:
 https://freeboard.io/board/Wauqxs
 
-> The curve is useful to interpret the Gas ratio, and obtain a value in **ppm**.
+> The curve allows the user to interpret the Gas ratio, and obtain a value in **ppm** of the gas concentration.
 
 ![](./assets/freeboard.gif)
 
 ### THE END
+
+## Contact
+taillard@etud.insa-toulouse.fr
+rougeaux@etud.insa-toulouse.fr
