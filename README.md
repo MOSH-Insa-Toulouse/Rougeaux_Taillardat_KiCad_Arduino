@@ -82,7 +82,7 @@ The dashboard compiled is shown below:
 
 ![](./assets/dashboard.gif)
 
-The switch is utilized to control the state of the gas sensor remotely.
+As we can see, we add a switch to control the state of the gas sensor remotely.
 When switched off for example, the payload sent in the ```ttn downlink``` node looks like:
 ```json
 {
@@ -103,14 +103,18 @@ function Encoder(object, port) {
 }
 ```
 
-When we simulate this behavior in real time, we can see the expected result on the TTN console output:
+When we simulate this behavior in real time, we can see the expected result on the TTN console output, and the LED switched off on our Arduino board:
 
 ![](./assets/ttn.png)
 
+> Here, we can see that when switched off, the Arduino board stops sending data and is in a *waiting* mode. Once we switched on, the data are sent and received again.
+
 ### Freeboard.io
 In addition to the localhost Node-RED dashboard we created, we prefered to use also Freeboard.io, to access the interface anywhere, and not only on our laptop localhost (http://127.0.0.1:1880/ui/).
-That's the aim of the dweet node, which transfer the payload to a specific topic, that we will use in our freeboard dashboard:
+That's the aim of the dweet node, which transfer the payload to a specific **topic**, that we will use in our freeboard dashboard:
 https://freeboard.io/board/Wauqxs
+
+> The curve is useful to interpret the Gas ratio, and obtain a value in **ppm**.
 
 ![](./assets/freeboard.gif)
 
