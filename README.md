@@ -10,9 +10,9 @@ A **LoRa-connected gas sensor** has been developed to alert the user about the c
 # Content
 
 This folder contains :
-- **PCB Files**: A shield for the gas sensor to plug on an Arduino Uno (made with [KiCad](http://kicad-pcb.org/))
+- **KiCad PCB Files**: A shield for the gas sensor to plug on an Arduino Uno (made with [KiCad](http://kicad-pcb.org/))
 - **Arduino Code**: The code for the microcontroler, using [Arduino IDE](https://www.arduino.cc/en/Main/Software)
-- **Dashboard Link**: The HMI, to stay connected with your sensor ([Node-RED](https://nodered.org/) and [Freeboard.io](https://freeboard.io/))
+- **Node-RED Dashboard**: The HMI, to stay connected with your sensor ([Node-RED](https://nodered.org/) and [Freeboard.io](https://freeboard.io/))
 
 
 ## PCB Files
@@ -41,7 +41,7 @@ These parameters have been respected to respect the INSA PCB production capacity
 
 > KiCad-Pcbnew-Affichage-3D Visualizer
 
-## Node-Red Dashboard & Freeboard.io
+## Node-Red Dashboard
 ### TTN data payload
 Data sent by the **Arduino board** through **LoRa network** are decoded thanks to our ```Decoder``` function that we precised in the *Payload Format* section on TTN, which allows to generate an understandable payload with the bytes received, as ```json``` format for instance.
 Our ```Decoder``` is presented below:
