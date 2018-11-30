@@ -4,7 +4,7 @@
 
 This project is realized in the 5th year PTP ISS at INSA Toulouse.
 A **LoRa-connected gas sensor** has been developed to alert the user about the concentration of health threatening gas near the sensor.
-
+COUCOUUUUUUUUUUUu
 # Content
 
 This folder contains :
@@ -63,8 +63,6 @@ And the result for a test payload: ``` 02 BE 01 F5 ```
 Once the payload is well interpreted in TTN, we use the tool **Node-RED** built on Node.js, to deal with our datas and then display them in a dashboard for user consultation.
 
 ![](./assets/node-red.png)
-
-testtststs
 
 We use a ``` ttn ``` node linked to our application and registered device. When a data is received, we can observe in the debug console the following result (output of the debug node):
 
