@@ -115,8 +115,8 @@ When we simulate this behavior in real time, we can see the expected result on t
 In addition to the localhost Node-RED dashboard we created, we prefered to use also Freeboard.io, to access the interface anywhere, and not only on our laptop localhost (http://127.0.0.1:1880/ui/).
 That's the aim of the dweet node, which transfers the payload to a specific **topic**, that we will use in our freeboard dashboard.
 
-Dashboard link:
-https://freeboard.io/board/Wauqxs
+**Dashboard link:
+https://freeboard.io/board/Wauqxs**
 
 > The curve allows the user to interpret the Gas ratio, and obtain a value in **ppm** of the gas concentration.
 
