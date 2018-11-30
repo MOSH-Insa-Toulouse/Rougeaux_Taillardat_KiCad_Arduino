@@ -77,7 +77,7 @@ Once the payload is well interpreted in TTN, we use the tool **Node-RED** built 
 
 ![](./assets/node-red.png)
 
-We use a ``` ttn ``` node linked to our application and registered device. When a data is received, we can observe in the debug console the json payload received (output of the debug node, cf. picture above in the right panel). Therefore we received the json payload as expected.
+We use a ``` ttn uplink ``` node linked to our application and registered device. When a data is received, we can observe in the debug console the json payload received (output of the debug node, cf. picture above in the right panel). Therefore we received the json payload as expected.
 The dashboard compiled is shown below:
 
 ![](./assets/dashboard.gif)
@@ -102,6 +102,10 @@ function Encoder(object, port) {
   return bytes;
 }
 ```
+
+When we simulate this behavior in real time, we can see the expected result on the TTN console output:
+
+![](./assets/ttn.png)
 
 ### Freeboard.io
 In addition to the localhost Node-RED dashboard we created, we prefered to use also Freeboard.io, to access the interface anywhere, and not only on our laptop localhost (http://127.0.0.1:1880/ui/).
