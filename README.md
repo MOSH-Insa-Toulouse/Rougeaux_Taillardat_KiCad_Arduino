@@ -26,23 +26,114 @@ The shield is composed of :
 
 > We built our own footprints libraries expect for the Arduino Uno component
 
-### Layout
-These parameters have been respected to respect the INSA PCB production capacity :
-|Parameters|Value|
-|--|--|
-|Isolation|0.4|
-| Largeur piste | 0.8 |
-|Diamètre Via|1.6|
-|Perçage Via|0.8|
+### Schematics
 
-### 3D Model
+![](./assets/Schematic.PNG)
+
+### PCB Layout
+
+![](./assets/PCBLayout.PNG)
+
+These parameters have been respected to respect the INSA PCB production capacity : 
+
+ - Isolation : 0.4
+ - Largeur piste : 0.8
+ - Via : 1.6
+ - Perçage Via : 0.8
+
+### 3D Visualization
 
 ![](./assets/3D.JPG)
 
-> KiCad-Pcbnew-Affichage-3D Visualizer
+## Arduino Board & Code
+We have done a first prototype using only a Grove gas sensor to measure the gas concentration in the air.
+### Arduino Board
+The devices used in this project are : 
 
-## Arduino Code
+ - Arduino Uno
+ - LoRa chip RN2783A
+ - Grove gas sensor (v1.4) MQ-9
+ - LED
 
+![](./assets/arduino.jpg)
+
+### Overview of the code
+Data from a Grove gas sensor is transmitted with a RN2483A chip, via the LoRa network, to a TTN ([The Things Network](https://www.thethingsnetwork.org/)) account in which the Arduino device is registered.
+The Arduino listens for incoming messages from a dashboard that is linked with the TTN account and allows the user to switch the gas sensor on and off.
+  A LED switches on and off according to the gas sensor state.
+
+> You will find more information about the dashboard on next section
+
+#### Libraries
+The communication bewteen the Arduino and the RN2483A is serial, so you will need the `SoftwareSerial` library. 
+Communication with [The Things Network](https://www.thethingsnetwork.org/) is achieved with the very well written`TheThingsNetwork` library.
+
+#### LoRa setup
+To send data to [The Things Network](https://www.thethingsnetwork.org/), you will need to create an account, register your device, and enter your device IDs in the Arduino code : 
+```c
+    // Set your AppEUI and AppKey
+    const char *devAddr = "26011253";
+    const char *nwkSKey = "D1A126A957FC1C25F20D3DB5379E3DE6";
+    const char *appSKey = "FC290B61D206CD05073F42CF673DE592";
+```
+The TTN library provides functions to quickly setup you LoRa chip. We are using `personalize(devAddr, nwkSKey, appSKey);`.
+#### Sending sensor values
+The function `readAndSend` reads the analog data from the sensor and prepares the payload containing the read value in bytes before sending it. The `sendBytes` function from TTN is then used to transmit the data.
+```c
+void readAndSend() {
+
+  // Read sensor
+  int sensorValue = analogRead(sensorPin);
+  debugSerial.println(sensorValue);
+
+  // Prepare payload
+  byte payload[2];
+  payload[0] = sensorValue >> 8;
+  payload[1] = sensorValue;
+
+  // Send it off
+  ttn.sendBytes(payload, sizeof(payload));
+}
+```
+#### Receiving data 
+To receive data it works differently. We are using the callback function `onMessage` provided by the TTN library that listens for an incoming message (downlink mode in TTN).
+When a message is received, the `message` function is called. Depending on the value received (`0` or `1`), a boolean variable `ONreceived` is set to `false` or `true`. 
+
+If a `0` is received, the LED switches off and we will stop reading the gas sensor values. We will just keep the connection alive with the `keepAlive` function :
+```c
+void keepAlive() {
+
+  // Prepare payload (default payload FF)
+  byte payload[1];
+  payload[0] = 0xFF;
+
+  // Send it off on port 2 to indicate this not a sensor value
+  ttn.sendBytes(payload, sizeof(payload), 2);
+}
+```
+When a `1` is received, we switch on the light and we will start reading the sensor values using the previsouly presented `readAndSend` function.
+
+
+
+#### Main loop
+Finally, our main `loop` function looks like:
+```c
+void loop()
+{
+  debugSerial.println("-- LOOP");
+
+  // If the user activated the sensor on the web plateform, switch the led on, read the sensor value and send the data
+  // Else, switch the led off and keep the connection alive
+
+  if (ONreceived) {
+    readAndSend();
+  } else {
+    keepAlive();
+  }
+  
+  delay(500);
+}
+```
 ## Node-Red Dashboard
 ### TTN data payload
 Data sent by the **Arduino board** through **LoRa network** are decoded thanks to our ```Decoder``` function that we precised in the *Payload Format* section on TTN, which allows to generate an understandable payload with the bytes received, as ```json``` format for instance.
