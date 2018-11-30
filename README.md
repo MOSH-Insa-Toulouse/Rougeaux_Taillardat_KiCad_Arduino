@@ -4,7 +4,7 @@
 
 ##### *Key-words:* ```Arduino``` ```KiCad``` ```The Thing Network``` ```LoRa``` ```Node-RED``` ```IoT``` ```Gas sensor```
 
-This project is realized in the 5th year PTP ISS at INSA Toulouse.
+This project is realised in the 5th year PTP ISS at INSA Toulouse.
 A **LoRa-connected gas sensor** has been developed to alert the user about the concentration of health threatening gas near the sensor.
 
 # Content
@@ -12,16 +12,17 @@ A **LoRa-connected gas sensor** has been developed to alert the user about the c
 This repository contains :
 - **KiCad PCB Files**: A shield for the gas sensor to plug on an Arduino Uno (made with [KiCad](http://kicad-pcb.org/))
 - **Arduino Code**: The code for the microcontroler (using [Arduino IDE](https://www.arduino.cc/en/Main/Software))
-- **Node-RED Dashboard**: The HMI, to stay connected with your sensor ([Node-RED](https://nodered.org/) and [Freeboard.io](https://freeboard.io/))
+
+A **Node-RED Dashboard** has been done to stay connected with your sensor. The development of this HMI is described at the end of this file.([Node-RED](https://nodered.org/) and [Freeboard.io](https://freeboard.io/))
 
 
 ## KiCad PCB Files
 ### Overview
 The shield is composed of :
 - A home-made gas sensor (made at [AIME](https://www.aime-toulouse.fr/cmsms/index.php))
-- A amplifier stage for home-made gas sensor
+- An amplifier stage for home-made gas sensor
 - A commercial gas sensor for the calibration of the home-made one (Grove connectors)
-- The LoRa chip for the data transmission
+- A LoRa chip for the data transmission
 - A LED as an on/off indicator
 
 > We built our own footprints libraries expect for the Arduino Uno component
@@ -46,7 +47,7 @@ These parameters have been respected to respect the INSA PCB production capacity
 ![](./assets/3D.JPG)
 
 ## Arduino Board & Code
-We have done a first prototype using only a Grove gas sensor to measure the gas concentration in the air.
+We have done a prototype using a Grove gas sensor to measure the gas concentration in the air.
 
 ### Arduino Board
 The elements in this project are : 
@@ -63,7 +64,7 @@ Data from a Grove gas sensor is transmitted with a RN2483A chip, via the LoRa ne
 The Arduino listens for incoming messages from a dashboard that is linked with the TTN account and allows the user to switch the gas sensor on and off.
 A LED switches on and off according to the gas sensor state.
 
-> You will find more information about the dashboard on next section
+> You will find more information about the dashboard in the next section
 
 #### Libraries
 The communication bewteen the Arduino and the RN2483A is serial, so you will need the `SoftwareSerial` library. 
@@ -77,7 +78,7 @@ const char *devAddr = "26011253";
 const char *nwkSKey = "D1A126A957FC1C25F20D3DB5379E3DE6";
 const char *appSKey = "FC290B61D206CD05073F42CF673DE592";
 ```
-The TTN library provides functions to quickly setup you LoRa chip. We are using `personalize(devAddr, nwkSKey, appSKey);`.
+The, the TTN library provides functions to quickly setup you LoRa chip, like `personalize(devAddr, nwkSKey, appSKey);`.
 
 #### Sending sensor values
 The function `readAndSend` reads the analog data from the sensor and prepares the payload containing the read value in bytes before sending it. The `sendBytes` function from TTN is then used to transmit the data.
@@ -101,7 +102,7 @@ void readAndSend() {
 The callback function `onMessage` provided by the TTN library listens for an incoming message (downlink mode in TTN).
 When a message is received, the `message` function is called.
 
-If a `0` is received, the LED switches off and we will stop reading the gas sensor values. We will just keep the connection alive with the `keepAlive` function :
+If a `0` is received, the LED switches off and we will stop reading the gas sensor values. We will just keep the connection alive:
 ```c
 void keepAlive() {
 
