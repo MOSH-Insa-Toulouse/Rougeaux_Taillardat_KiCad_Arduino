@@ -20,7 +20,7 @@ The shield is composed of :
 - A amplifier stage for home-made gas sensor
 - A commercial gas sensor for the calibration of the home-made one (Grove connectors)
 - The LoRa chip for the data transmission
-- A LED as an On/Off indicator
+- A LED as a threshold exceeded indicator
 
 > We built our own footprints libraries expect for the Arduino Uno component
 
@@ -41,14 +41,15 @@ These parameters have been respected to respect the INSA PCB production capacity
 
 ## Node-Red Dashboard & Freeboard.io
 ### TTN data payload
-Data sent by the Arduino board through LoRA network are decoded thanks to a ```Decoder``` function that we precised in the *Payload Format* section, which allows to generate an understable payload with the bytes received, as ```json``` format for example.
+Data sent by the Arduino board through LoRa network are decoded thanks to a ```Decoder``` function that we precised in the *Payload Format* section on TTN, which allows to generate an understandable payload with the bytes received, as ```json``` format for example.
 Our ```Decoder``` is presented below:
 ```javascript
 function Decoder(bytes, port) {
   // Decode an uplink message from a buffer
-  if (port == 2) {
+  if (port === 2) { // send via the dashboard to stop gas sensor, see next chapter
     return { waiting: true };
-  } else {
+    
+  } else if (port === 1) {
     var gas = (bytes[0] << 8) | bytes[1];   // value between 0 and 1024
     var nano = (bytes[2] << 8) | bytes[3];
     
@@ -63,7 +64,7 @@ function Decoder(bytes, port) {
   }
 }
 ```
-And the result for a test payload: ``` 02 BE 01 F5 ```
+And the result for a test payload on port 1: ``` 02 BE 01 F5 ```
 ```json
 {
   "gas": 7.02,
@@ -76,9 +77,20 @@ Once the payload is well interpreted in TTN, we use the tool **Node-RED** built 
 
 ![](./assets/node-red.png)
 
-We use a ``` ttn ``` node linked to our application and registered device. When a data is received, we can observe in the debug console the following result (output of the debug node):
+We use a ``` ttn ``` node linked to our application and registered device. When a data is received, we can observe in the debug console the json payload received (output of the debug node, cf. picture above in the right panel). Therefore we received the json payload as expected.
+The dashboard compiled is shown below:
 
-![](./assets/debug-node-red.png)
+![](./assets/dashboard.gif)
+
+The switch is utilized to control the state of the gas sensor remotely.
+When switched off for example, the payload sent in the ```ttn downlink``` node looks like:
+```json
+{
+  "gas_sensor": false,
+}
+```
+
+Then our Encoder on TTN sends to the Arduino board a bytes payload ```00``` or ```01``` (, on port 2 or 3:
 ```javascript
 function Encoder(object, port) {
   // Encode downlink messages sent as
@@ -90,13 +102,11 @@ function Encoder(object, port) {
   return bytes;
 }
 ```
-Therefore we received the json payload as expected. Instead of using the dashboard provided by Node-RED directly, we prefered to use Freeboard.io, to access the interface anywhere, and not only on our laptop localhost.
+In addition to the localhost Node-RED dashboard we created, we prefered to use also Freeboard.io, to access the interface anywhere, and not only on our laptop localhost (http://127.0.0.1:1880/ui/).
 That's the aim of the dweet node, which transfer the payload to a specific topic, that we will use in our freeboard dashboard.
 
 ### Freeboard.io
 Dashboard User Interface:
-
-![](./assets/dashboard.gif)
 
 ![](./assets/freeboard.gif)
 
