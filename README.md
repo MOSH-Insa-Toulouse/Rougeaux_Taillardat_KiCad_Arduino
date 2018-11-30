@@ -41,7 +41,7 @@ These parameters have been respected to respect the INSA PCB production capacity
 
 ## Node-Red Dashboard & Freeboard.io
 ### TTN data payload
-Data sent by the Arduino board through LoRa network are decoded thanks to a ```Decoder``` function that we precised in the *Payload Format* section on TTN, which allows to generate an understandable payload with the bytes received, as ```json``` format for example.
+Data sent by the **Arduino board** through **LoRa network** are decoded thanks to our ```Decoder``` function that we precised in the *Payload Format* section on TTN, which allows to generate an understandable payload with the bytes received, as ```json``` format for instance.
 Our ```Decoder``` is presented below:
 ```javascript
 function Decoder(bytes, port) {
@@ -50,13 +50,13 @@ function Decoder(bytes, port) {
     return { waiting: true };
     
   } else if (port === 1) {
-    var gas = (bytes[0] << 8) | bytes[1];   // value between 0 and 1024
+    var gas = (bytes[0] << 8) | bytes[1];       // value between 0 and 1024
     var nano = (bytes[2] << 8) | bytes[3];
     
     // transform into readable data
     var gas_volt = gas / 1024 * 5.0;
-    var gas_ratio = (5.0 - gas_volt)/gas_volt;
-    var R0 = 9.3; // sensor resistance at 1000ppm LPG in the clean air
+    var gas_ratio = (5.0 - gas_volt)/gas_volt;  // see datasheet for the calculation
+    var R0 = 9.3;                               // sensor resistance at 1000ppm LPG in the clean air
     return {
       gas: (gas_ratio/R0).toFixed(2),
       nano: nano
@@ -73,11 +73,11 @@ And the result for a test payload on port 1: ``` 02 BE 01 F5 ```
 ```
 
 ### Node-RED
-Once the payload is well interpreted in TTN, we use the tool **Node-RED** built on Node.js, to deal with our datas and then display them in a dashboard for user consultation.
+Once the payload is well interpreted in TTN, we use the tool **Node-RED** built on Node.js, to deal with our data and then display them in a dashboard for user consultation.
 
 ![](./assets/node-red.png)
 
-We use a ``` ttn uplink ``` node linked to our application and registered device. When a data is received, we can observe in the **debug** console the json payload received (output of the debug node, cf. picture above in the right panel). Therefore we received the json payload as expected.
+We use a ``` ttn uplink ``` node linked to our application (```App ID: 20079652```) and registered device (```Device ID: arduino_gaz_sensor```). When a data is received, we can observe in the **debug** console the ```json``` payload received (output of the debug node, cf. picture above in the right panel). Therefore we received the payload as expected.
 The dashboard compiled is shown below:
 
 ![](./assets/dashboard.gif)
@@ -118,3 +118,4 @@ https://freeboard.io/board/Wauqxs
 
 ![](./assets/freeboard.gif)
 
+### THE END
