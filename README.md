@@ -79,7 +79,17 @@ Once the payload is well interpreted in TTN, we use the tool **Node-RED** built 
 We use a ``` ttn ``` node linked to our application and registered device. When a data is received, we can observe in the debug console the following result (output of the debug node):
 
 ![](./assets/debug-node-red.png)
+```javascript
+function Encoder(object, port) {
+  // Encode downlink messages sent as
+  // object to an array or buffer of bytes.
+  var bytes = [];
+  if (port === 2) bytes[0] = object.gas_sensor ? 1 : 0;
+  if (port === 3) bytes[0] = object.nano_sensor ? 2 : 0;
 
+  return bytes;
+}
+```
 Therefore we received the json payload as expected. Instead of using the dashboard provided by Node-RED directly, we prefered to use Freeboard.io, to access the interface anywhere, and not only on our laptop localhost.
 That's the aim of the dweet node, which transfer the payload to a specific topic, that we will use in our freeboard dashboard.
 
