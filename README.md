@@ -90,7 +90,7 @@ When switched off for example, the payload sent in the ```ttn downlink``` node l
 }
 ```
 
-Then our Encoder on TTN sends to the Arduino board a bytes payload ```00``` or ```01``` (, on port 2 or 3:
+Then our Encoder on TTN sends to the Arduino board a bytes payload ```00``` or ```01``` (on port 2 or 3):
 ```javascript
 function Encoder(object, port) {
   // Encode downlink messages sent as
@@ -102,11 +102,11 @@ function Encoder(object, port) {
   return bytes;
 }
 ```
-In addition to the localhost Node-RED dashboard we created, we prefered to use also Freeboard.io, to access the interface anywhere, and not only on our laptop localhost (http://127.0.0.1:1880/ui/).
-That's the aim of the dweet node, which transfer the payload to a specific topic, that we will use in our freeboard dashboard.
 
 ### Freeboard.io
-Dashboard User Interface:
+In addition to the localhost Node-RED dashboard we created, we prefered to use also Freeboard.io, to access the interface anywhere, and not only on our laptop localhost (http://127.0.0.1:1880/ui/).
+That's the aim of the dweet node, which transfer the payload to a specific topic, that we will use in our freeboard dashboard:
+https://freeboard.io/board/Wauqxs
 
 ![](./assets/freeboard.gif)
 
