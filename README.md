@@ -35,7 +35,7 @@ These parameters have been respected to respect the INSA PCB production capacity
 
 ### 3D Model
 
-![](./assets/3D.png)
+![](./assets/3D.JPG)
 
 > KiCad-Pcbnew-Affichage-3D Visualizer
 
