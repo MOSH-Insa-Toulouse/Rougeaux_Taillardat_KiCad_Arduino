@@ -20,7 +20,7 @@ The shield is composed of :
 - A amplifier stage for home-made gas sensor
 - A commercial gas sensor for the calibration of the home-made one (Grove connectors)
 - The LoRa chip for the data transmission
-- A LED as a threshold exceeded indicator
+- A LED as an On/Off indicator
 
 > We built our own footprints libraries expect for the Arduino Uno component
 
