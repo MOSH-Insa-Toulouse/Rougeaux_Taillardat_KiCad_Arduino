@@ -52,10 +52,10 @@ We have done a **prototype** using a Grove gas sensor to measure the gas concent
 ### Arduino Board
 The elements in this project are : 
 
- - Arduino Uno
- - LoRa chip RN2783A
- - Grove gas sensor (v1.4) MQ-9
- - LED
+ - An Arduino Uno
+ - A LoRa chip RN2783A
+ - A Grove gas sensor (v1.4) MQ-9
+ - A LED
 
 ![](./assets/arduino.jpg)
 
