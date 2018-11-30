@@ -2,7 +2,7 @@
 # LoRa Project: Smart Gas Sensor
 > Elie Taillardat & Sophie Rougeaux
 
-##### *Key-words:* ```Arduino``` ```KiCad``` ```The Thing Network``` ```LoRa``` ```Node-RED```
+##### *Key-words:* ```Arduino``` ```KiCad``` ```The Thing Network``` ```LoRa``` ```Node-RED``` ```IoT``` ```Gas sensor```
 
 This project is realized in the 5th year PTP ISS at INSA Toulouse.
 A **LoRa-connected gas sensor** has been developed to alert the user about the concentration of health threatening gas near the sensor.
