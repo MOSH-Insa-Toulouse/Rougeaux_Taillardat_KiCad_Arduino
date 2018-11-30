@@ -74,5 +74,7 @@ That's the aim of the dweet node, which transfer the payload to a specific topic
 ### Freeboard.io
 Dashboard User Interface:
 
-![](./assets/freeboard.png)
+![](./assets/dashboard.gif)
+
+![](./assets/freeboard.gif)
 
