@@ -15,7 +15,7 @@ This folder contains :
 - **Node-RED Dashboard**: The HMI, to stay connected with your sensor ([Node-RED](https://nodered.org/) and [Freeboard.io](https://freeboard.io/))
 
 
-## PCB Files
+## KiCad PCB Files
 ### Overview
 The shield is composed of :
 - A home-made gas sensor (made at [AIME](https://www.aime-toulouse.fr/cmsms/index.php))
@@ -40,6 +40,8 @@ These parameters have been respected to respect the INSA PCB production capacity
 ![](./assets/3D.JPG)
 
 > KiCad-Pcbnew-Affichage-3D Visualizer
+
+## Arduino Code
 
 ## Node-Red Dashboard
 ### TTN data payload
